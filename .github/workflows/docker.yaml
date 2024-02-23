@@ -1,9 +1,11 @@
 name: Publish Docker image
 
 on:
-    push:
-#   release:
-#     types: [published]
+  push:
+    branches:
+      - 'main'
+    tags:
+      - 'v*'
 
 jobs:
   push_to_registry:
@@ -26,6 +28,9 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: devopsbrains/mvn-nvm
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
 
       - name: Check metadata (tags, labels) for Docker
         run: |
