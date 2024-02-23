@@ -25,7 +25,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: devopsbrains/mvn-nvm
+          images: brainsdevops/mvn-nvm
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
