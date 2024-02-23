@@ -20,7 +20,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
@@ -29,11 +28,6 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-
-      - name: Check metadata (tags, labels) for Docker
-        run: |
-            echo "Tags: ${{ steps.meta.outputs.tags }}"
-            echo "Labels: ${{ steps.meta.outputs.labels }}"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
